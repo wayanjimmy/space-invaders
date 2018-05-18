@@ -1,16 +1,28 @@
 import Ship from './Ship'
+import Flower from './Flower'
 
 const Sketch = p => {
   let ship
+  let flowers = []
 
   p.setup = () => {
     p.createCanvas(600, 400)
     ship = new Ship(p)
+
+    for (let i = 0; i < 6; i++) {
+      flowers[i] = new Flower(p, {
+        x: i * 80 + 80,
+        y: 60
+      })
+    }
   }
 
   p.draw = () => {
     p.background(51)
     ship.show()
+    for (const flower of flowers) {
+      flower.show()
+    }
   }
 
   p.keyPressed = () => {
