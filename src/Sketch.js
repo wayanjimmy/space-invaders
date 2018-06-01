@@ -26,11 +26,23 @@ const Sketch = p => {
     for (const drop of drops) {
       drop.show()
       drop.move()
+
+      for (const flower of flowers) {
+        // collission detection
+        if (drop.hits(flower)) {
+          flower.grow()
+          drop.destroy()
+        }
+      }
     }
 
     for (const flower of flowers) {
       flower.show()
+      flower.move()
     }
+
+    // remove deleted drops from the array
+    drops = drops.filter(drop => !drop.deleted)
   }
 
   p.keyPressed = () => {
