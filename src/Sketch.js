@@ -22,6 +22,7 @@ const Sketch = p => {
   p.draw = () => {
     p.background(51)
     ship.show()
+    ship.move()
 
     for (const drop of drops) {
       drop.show()
@@ -36,9 +37,20 @@ const Sketch = p => {
       }
     }
 
+    let edge = false
+
     for (const flower of flowers) {
       flower.show()
       flower.move()
+      if (flower.x > p.width || flower.x < 0) {
+        edge = !edge
+      }
+    }
+
+    if (edge) {
+      for (const flower of flowers) {
+        flower.shiftDown()
+      }
     }
 
     // remove deleted drops from the array
@@ -55,10 +67,14 @@ const Sketch = p => {
     }
 
     if (p.keyCode === p.RIGHT_ARROW) {
-      ship.move(1)
+      ship.setDir(1)
     } else if (p.keyCode === p.LEFT_ARROW) {
-      ship.move(-1)
+      ship.setDir(-1)
     }
+  }
+
+  p.keyReleased = () => {
+    ship.setDir(0)
   }
 }
 

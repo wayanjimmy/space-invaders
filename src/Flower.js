@@ -10,7 +10,8 @@ class Flower {
   }
 
   show() {
-    this.p.fill(255, 0, 200)
+    this.p.noStroke()
+    this.p.fill(255, 0, 200, 150)
     this.p.ellipse(this.x, this.y, this.r * 2, this.r * 2)
   }
 
@@ -20,7 +21,11 @@ class Flower {
 
   move() {
     this.x += this.xdir
-    this.y += this.ydir
+  }
+
+  shiftDown() {
+    this.xdir *= -1
+    this.y += this.r
   }
 }
 

@@ -2,6 +2,7 @@ class Ship {
   constructor(p) {
     this.p = p
     this.x = this.p.width / 2
+    this.xdir = 0
   }
 
   show() {
@@ -10,8 +11,12 @@ class Ship {
     this.p.rect(this.x, this.p.height - 20, 20, 60)
   }
 
-  move(dir) {
-    this.x += dir * 5
+  move() {
+    this.x += this.xdir * 5
+  }
+
+  setDir(dir) {
+    this.xdir = dir
   }
 }
 
